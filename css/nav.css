@@ -1,0 +1,255 @@
+nav {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    align-items: center;
+    z-index: 200;
+}
+
+nav>img,
+aside>img {
+    height: 90%;
+    max-height: 80px;
+    width: 180px;
+    object-fit: contain;
+}
+
+.nav__items, .aside__items {
+    display: flex;
+    gap: 30px;
+    font-size: .9rem;
+    height: 100%;
+    overflow: hidden;
+}
+
+.nav__items a,
+.aside__items a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-weight: 500;
+    user-select: none;
+}
+
+.nav-line {
+    width: 20px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--bg-majorelle-blue);
+    position: absolute;
+    transition: var(--transition-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.nav__items a:hover,
+.nav--active,
+.aside__items a:hover,
+.aside--active {
+    color: var(--text-majorelle-blue) !important;
+}
+
+.nav__buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.nav__buttons button {
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: var(--transition-1);
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.nav__buttons button:last-child {
+    background: var(--bg-majorelle-blue);
+    color: var(--text-white);
+}
+
+.nav__buttons button:first-child:hover {
+    background: rgba(214, 213, 213, 0.6);
+}
+
+.nav__buttons button:last-child:hover {
+    background: var(--bg-ocean-blue);
+}
+
+/* SCROLLED */ 
+nav.scrolled {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #ffffffde;
+    backdrop-filter: blur(10px);
+    transform: translateY(-100%);
+    animation: fallDown .5s ease forwards;
+}
+
+@keyframes fallDown {
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+/**
+    ASIDE
+**/
+
+aside {
+    width: calc(100% - 10%);
+    height: 100vh;
+    overflow-y: auto;
+    background: #ffeded;
+    display: flex;
+    flex-direction: column;
+    gap: calc(50px + 2vh);
+    position: fixed;
+    z-index: 500;
+    transform: translateX(-100%);
+    pointer-events: none;
+    transition: var(--transition-2);
+}
+
+aside img {
+    position: absolute;
+    top: 0;
+    left: 20px;
+}
+
+.aside__items {
+    flex-direction: column;
+    gap: 0px;
+    height: max-content;
+    margin-top: calc(100px + 5vh);
+}
+
+.aside__items a {
+    border-top: 1px solid #9c9c9c77;
+    padding-block: 15px;
+}
+
+.aside__items a:nth-last-child(1) {
+    border-bottom: 1px solid #9c9c9c77;
+}
+
+aside .nav__buttons {
+    flex-direction: column;
+    align-items: center;
+}
+
+aside .nav__buttons button {
+    width: 70%;
+    min-width: 200px;
+    padding-block: 10px;
+}
+
+aside .nav__buttons button:first-child {
+    background: rgba(102, 102, 102, 0.116);
+}
+
+
+.aside-line {
+    width: 5px;
+    height: 30px;
+    border-radius: 3px;
+    background: var(--bg-majorelle-blue);
+    position: absolute;
+    transition: var(--transition-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 2%;
+    top: 80px;
+}
+
+
+button.menu {
+    position: fixed;
+    right: 5%;
+    top: 35px;
+    width: 30px;
+    height: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    z-index: 999;
+    display: none;
+}
+
+.menu::before {
+    content: "";
+    width: 35px;
+    height: 35px;
+    padding: 10px;
+    position: absolute;
+    background: #ffffffde;
+    border-radius: 50%;
+    transition: var(--transition-1)
+}
+
+.menu.show::before {
+    transform: scale(0);
+}
+
+.menu span {
+    width: 30px;
+    height: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    background: #666;
+    transition: var(--transition-1);
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+}
+
+.menu span:nth-child(2) {
+    top: 6px;
+}
+.menu span:nth-child(3) {
+    top: 12px;
+}
+
+.menu.show span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu.show span:nth-child(1) {
+    transform: translateX(-50%) rotate(45deg);
+    top: 6px;
+}
+
+.menu.show span:nth-child(3) {
+    transform: translateX(-50%) rotate(-45deg);
+    top: 6px;
+}
+
+aside.show {
+    transform: translateX(0);
+    pointer-events: all;
+}
+
+
+@media screen and (max-width: 1000px) {
+    nav .nav__buttons,
+    .nav__items {
+        display: none;
+    }
+
+    button.menu {
+        display: flex;
+    }
+}
